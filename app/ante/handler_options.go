@@ -50,7 +50,7 @@ type HandlerOptions struct {
 	ExtraDecorators   []sdk.AnteDecorator
 }
 
-func (options HandlerOptions) validate() error {
+func (options HandlerOptions) Validate() error {
 	if options.AccountKeeper == nil {
 		return errorsmod.Wrap(errortypes.ErrLogic, "account keeper is required for AnteHandler")
 	}
@@ -69,7 +69,7 @@ func (options HandlerOptions) validate() error {
 	return nil
 }
 
-func newEthAnteHandler(options HandlerOptions) sdk.AnteHandler {
+func NewEthAnteHandler(options HandlerOptions) sdk.AnteHandler {
 	return func(ctx sdk.Context, tx sdk.Tx, simulate bool) (sdk.Context, error) {
 		var err error
 		evmParams := options.EvmKeeper.GetParams(ctx)

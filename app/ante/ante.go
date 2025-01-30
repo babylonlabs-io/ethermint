@@ -43,11 +43,11 @@ const (
 // transaction-level processing (e.g. fee payment, signature verification) before
 // being passed onto it's respective handler.
 func NewAnteHandler(options HandlerOptions) (sdk.AnteHandler, error) {
-	if err := options.validate(); err != nil {
+	if err := options.Validate(); err != nil {
 		return nil, err
 	}
 
-	ethAnteHandler := newEthAnteHandler(options)
+	ethAnteHandler := NewEthAnteHandler(options)
 
 	return func(
 		ctx sdk.Context, tx sdk.Tx, sim bool,
